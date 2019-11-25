@@ -1,0 +1,8 @@
+{
+  "name": "papelaria",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}
