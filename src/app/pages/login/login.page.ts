@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
   @ViewChild(IonSlides, { static: false }) private slides: IonSlides
 
   public userRegister: User = {}
+  public userLogin: User = {}
 
   constructor(
     private userAuthService: UserAuthService
@@ -34,6 +35,12 @@ export class LoginPage implements OnInit {
     // }
   }
 
+  login(){
+    this.userAuthService.loginUser(this.userLogin)
+    console.log(this.userLogin)
+    this.userLogin = {}
+    
+  }
   //Scrolling da página login e cadastro
   segmentChanged(event: any) {
     console.log(event.detail.value)

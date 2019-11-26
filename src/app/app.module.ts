@@ -13,10 +13,10 @@ import { environment } from '../environments/environment'
 
 //Firebase Modules
 import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
 
 //Imports do AngularFire
 import { AngularFireModule } from '@angular/fire'
-import { AngularFirestoreModule } from '@angular/fire/firestore'
 
 //Services
 import { UserAuthService } from './services/auth.service'
