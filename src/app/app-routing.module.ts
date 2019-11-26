@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate: [AuthGuard]},
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule', canActivate: [LoggedGuard] },
   { path: 'products', loadChildren: './pages/products/products.module#ProductsPageModule' },
+  { path: 'products/:id', loadChildren: './pages/products/products.module#ProductsPageModule' },
 ];
 
 @NgModule({

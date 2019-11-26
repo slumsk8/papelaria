@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
     this.authService.logout()
   }
   //método para deletar o produto
-  async deleteProdudct(id: string) {
+  async deleteProduct(id: string) {
     try {
       await this.productService.deleteProduct(id)
     } catch (error) {

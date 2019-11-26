@@ -18,14 +18,15 @@ export class ProductService {
   ) { this.productCollection = this.productFireStore.collection<Product>('produtos') }
 
   addProduct(product: Product) {
-    this.productCollection.add(product)
+    return this.productCollection.add(product)
     this.navCtrl.navigateRoot('/home')
    }
   updateProduct(prodcut: Product, id: string) { 
-    this.productCollection.doc<Product>(id).update(prodcut)
+    return this.productCollection.doc<Product>(id).update(prodcut)
+    this.navCtrl.navigateRoot('/home')
   }
   deleteProduct(id: string) { 
-    this.productCollection.doc<Product>(id).delete()
+   return this.productCollection.doc<Product>(id).delete()
   }
   getProducts() { 
     return this.productCollection.snapshotChanges().pipe(
@@ -40,7 +41,7 @@ export class ProductService {
     )
   }
   getProduct(id: string) {
-    this.productCollection.doc<Product>(id).valueChanges()
+    return this.productCollection.doc<Product>(id).valueChanges()
    }
 
 }
