@@ -28,7 +28,8 @@ export class ProductsPage implements OnInit {
       }
     } else {
       try {
-        await this.productService.addProduct(this.product)
+        await this.productService.addProduct(this.product)     
+        this.product = {}   
       } catch (error) {
         console.log('Erro: ' + error)
       }

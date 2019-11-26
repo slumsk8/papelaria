@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
@@ -12,11 +13,13 @@ export class ProductService {
   private productCollection : AngularFirestoreCollection<Product>
 
   constructor(
-    private productFireStore: AngularFirestore
+    private productFireStore: AngularFirestore,
+    private navCtrl: NavController
   ) { this.productCollection = this.productFireStore.collection<Product>('produtos') }
 
   addProduct(product: Product) {
     this.productCollection.add(product)
+    this.navCtrl.navigateRoot('/home')
    }
   updateProduct(prodcut: Product, id: string) { 
     this.productCollection.doc<Product>(id).update(prodcut)

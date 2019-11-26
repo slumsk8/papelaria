@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
-import { runInThisContext } from 'vm';
 import { Product } from 'src/app/interfaces/product';
 import { Subscription } from 'rxjs';
 
