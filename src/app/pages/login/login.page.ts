@@ -11,10 +11,9 @@ import { User } from '../../interfaces/user';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  @ViewChild(IonSlides, { static: false } ) private slides: IonSlides
-  
-  public userRegister: User = {}
+  @ViewChild(IonSlides, { static: false }) private slides: IonSlides
 
+  public userRegister: User = {}
 
   constructor(
     private userAuthService: UserAuthService
@@ -24,17 +23,23 @@ export class LoginPage implements OnInit {
   }
 
   //Método para registrar um novo usuário
-  register(){
-    this.userAuthService.registerUser(this.userRegister)
-    this.userRegister = {}
+  register() {
+    // if (this.userRegister.email && this.userRegister.password !== '') {
+      this.userAuthService.registerUser(this.userRegister)
+      // document.querySelector('ion-segment').children[0].checked = true
+      // this.slides.slidePrev()
+      this.userRegister = {}
+    // } else {
+      // console.log('Algo aconteceu de errado')
+    // }
   }
 
   //Scrolling da página login e cadastro
-  segmentChanged(event: any){
-    console.log(event.type)
-    if(event.detail.value === "login"){
+  segmentChanged(event: any) {
+    console.log(event.detail.value)
+    if (event.detail.value === "login") {
       this.slides.slidePrev()
-    }else{
+    } else {
       this.slides.slideNext()
     }
   }

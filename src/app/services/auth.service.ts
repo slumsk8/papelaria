@@ -12,7 +12,7 @@ export class UserAuthService {
   ) { }
 
   //MÉTODOS DE REGISTRO E LOGIN DE USUÁRIO
-  async registerUser(user: User) {
+  async registerUser (user: User) {
     try {
       await this.userAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       user.uuid = this.userAuth.auth.currentUser.uid
@@ -29,9 +29,9 @@ export class UserAuthService {
         case 'auth/invalid-email':
           msgError = 'O e-mail informado é inválido!'
           break
-      }       
-      return false
-    }
+      }     
+      console.log(msgError)        
+    }    
   }
   sendParameters(user: User) {    
     // updateProfile é onde eu modificio os paramentros internos do currentuser
