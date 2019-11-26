@@ -68,4 +68,10 @@ export class UserAuthService {
       console.log(message)
     }
   }
+  logout(){
+    this.userAuth.auth.signOut()
+  }
+  public getAuth(){    
+    return this.userAuth.auth
+  }
 }

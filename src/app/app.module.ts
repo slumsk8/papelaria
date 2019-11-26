@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -20,6 +21,7 @@ import { AngularFireModule } from '@angular/fire'
 
 //Services
 import { UserAuthService } from './services/auth.service'
+import { LoggedGuard } from './guards/logged.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +38,8 @@ import { UserAuthService } from './services/auth.service'
     StatusBar,
     SplashScreen,
     UserAuthService,
+    AuthGuard,
+    LoggedGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
