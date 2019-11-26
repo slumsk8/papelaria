@@ -16,6 +16,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth'
 
 //Imports do AngularFire
 import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+
+//Services
 import { UserAuthService } from './services/auth.service'
 
 @NgModule({
@@ -26,7 +29,8 @@ import { UserAuthService } from './services/auth.service'
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),    
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,

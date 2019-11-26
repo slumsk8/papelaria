@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 //Angular Fire Auth
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../interfaces/user'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {  
   constructor(
-    private userAuth: AngularFireAuth
+    private userAuth: AngularFireAuth,
+    private userCollection: AngularFirestore
   ) { }
 
   //MÉTODOS DE REGISTRO E LOGIN DE USUÁRIO
@@ -38,6 +40,7 @@ export class UserAuthService {
     this.userAuth.auth.currentUser.updateProfile({
       displayName: user.username,
       photoURL: '',            
-    })    
+    })
+    this.userCollection.collection('users').add(user)
   }
 }
