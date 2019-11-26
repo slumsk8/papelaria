@@ -2,18 +2,23 @@ import { Injectable } from '@angular/core';
 //Angular Fire Auth
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../interfaces/user'
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
+
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
+
+  private userCollection: AngularFirestoreCollection<User>
+
   constructor(
     private userAuth: AngularFireAuth,
-    private userCollection: AngularFirestore,
+    private userFireStore: AngularFirestore,
     private navCtrl: NavController
-  ) { }
+  ) { this.userCollection = this.userFireStore.collection<User>('users') }
 
   //MÉTODOS DE REGISTRO E LOGIN DE USUÁRIO
   async registerUser(user: User) {
@@ -43,7 +48,7 @@ export class UserAuthService {
       displayName: user.username,
       photoURL: '',
     })
-    this.userCollection.collection('users').add(user)
+    this.userFireStore.collection('users').add(user)
   }
   async loginUser(user: User) {
     try {
@@ -74,4 +79,20 @@ export class UserAuthService {
   public getAuth(){    
     return this.userAuth.auth
   }
+  getAllUsers(){
+    return this.userCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(u => {
+          const data = u.payload.doc.data()
+          const id = u.payload.doc.id
+
+          return { id, ...data }
+        })
+      })
+    )
+  }
+  getUser(id: string) {
+    return this.userCollection.doc<User>(id).valueChanges()
+  }
+
 }

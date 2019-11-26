@@ -1,8 +1,10 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 import { UserAuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/interfaces/product';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,14 @@ export class HomePage implements OnInit {
 
   public products = new Array<Product>()
   private productSubscription: Subscription
+  public users = new Array<User>()  
+  private userSubscription: Subscription  
+  public currentUser: any
 
   constructor(
     private authService: UserAuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private userAuth: AngularFireAuth
   ) {
     this.productSubscription = this.productService.getProducts()
       .subscribe(
@@ -24,6 +30,8 @@ export class HomePage implements OnInit {
           this.products = data
         }
       )
+    this.userSubscription = this.authService.getAllUsers().subscribe(data => { this.users = data })
+    this.userAuth.user.subscribe((data) => { this.currentUser = data })
   }
 
   ngOnInit() {
