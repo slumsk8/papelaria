@@ -7,8 +7,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },  
   { path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate: [AuthGuard]},
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule', canActivate: [LoggedGuard] },
-  { path: 'products', loadChildren: './pages/products/products.module#ProductsPageModule' },
-  { path: 'products/:id', loadChildren: './pages/products/products.module#ProductsPageModule' },
+  { path: 'products', loadChildren: './pages/products/products.module#ProductsPageModule', canActivate: [AuthGuard] },    
+  { path: 'updateproduct/:id', loadChildren: './pages/updateproduct/updateproduct.module#UpdateproductPageModule', canActivate: [AuthGuard] },  
 ];
 
 @NgModule({

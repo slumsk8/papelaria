@@ -13,17 +13,14 @@ export class ProductService {
   private productCollection : AngularFirestoreCollection<Product>
 
   constructor(
-    private productFireStore: AngularFirestore,
-    private navCtrl: NavController
+    private productFireStore: AngularFirestore,    
   ) { this.productCollection = this.productFireStore.collection<Product>('produtos') }
 
   addProduct(product: Product) {
-    return this.productCollection.add(product)
-    this.navCtrl.navigateRoot('/home')
+    return this.productCollection.add(product)    
    }
   updateProduct(prodcut: Product, id: string) { 
     return this.productCollection.doc<Product>(id).update(prodcut)
-    this.navCtrl.navigateRoot('/home')
   }
   deleteProduct(id: string) { 
    return this.productCollection.doc<Product>(id).delete()

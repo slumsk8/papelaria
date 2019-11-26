@@ -29,7 +29,7 @@
 
         <ion-list>
           <ion-item-sliding *ngFor="let product of products">
-            <ion-item button [routerLink]="['/products', product.id]">
+            <ion-item button [routerLink]="['/updateproduct', product.id]">
               <ion-avatar slot="start">
                 <img [src]="product.pictureUrl">
               </ion-avatar>
